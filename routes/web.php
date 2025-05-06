@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Ajax\LocationController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Middleware\AuthMiddle;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +38,21 @@ Route::middleware(AuthMiddle::class)->prefix('admin')->group(function(){
 
     //
     Route::get('/product', function(){
-        return view('admin.product');
+        return view('admin.product.product');
     })->name('admin.product');
+
+    //Users
+    Route::prefix('/user')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('admin.user');
+        Route::get('create', [UserController::class, 'create'])->name('admin.user.create');
+        Route::post('store', [UserController::class, 'store'])->name('admin.user.store');
+    });
+
+    //ajax
+    Route::get('user/ajax/districts', [LocationController::class, 'districts'])->name('user.ajax.districts');
+    Route::get('user/ajax/ward', [LocationController::class, 'ward'])->name('user.ajax.ward');
+
+
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

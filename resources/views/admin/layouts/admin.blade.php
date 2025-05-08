@@ -37,8 +37,14 @@
     <!-- Main CSS-->
     <link href="{{ asset('admin_assets/css/theme.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('admin_assets/css/customes.css') }}" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <!-- Jquery JS-->
     <script src="{{ asset('admin_assets/vendor/jquery-3.2.1.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- alert custome -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
 
@@ -53,8 +59,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search"
-                                    placeholder="Tìm kiếm" />
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Tìm kiếm" />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -250,7 +255,49 @@
     <script src="{{ asset('admin_assets/vendor/chartjs/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('admin_assets/vendor/select2/select2.min.js') }}">
     </script>
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
 
+                    toastr.options.timeOut = 10000;
+                    toastr.info("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+                    break;
+                case 'success':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.success("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+                case 'warning':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.warning("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+                case 'error':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.error("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+            }
+        @endif
+        toastr.options = {
+            "positionClass": "toast-top-right",
+            "toastClass": "custom-toast"
+        };
+
+    </script>
     <!-- Main JS-->
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
 </body>

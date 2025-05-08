@@ -11,16 +11,16 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public $serviceBinding = [
-        'App\Services\Interfaces\UserServiceInterface' =>
-        'App\Services\UserService'
-    ];
+
     public function register()
     {
-        $this->app->bind(
-            \App\Services\Interfaces\UserServiceInterface::class,
-            \App\Services\UserService::class
-        );
+        $bindings = [
+            \App\Services\Interfaces\UserServiceInterface::class => \App\Services\UserService::class,
+            \App\Services\Interfaces\BaseServiceInterface::class => \App\Services\BaseService::class
+        ];
+        foreach ($bindings as $interface => $implementation) {
+            $this->app->bind($interface, $implementation);
+        }
     }
 
     /**

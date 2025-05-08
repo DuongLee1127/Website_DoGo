@@ -28,13 +28,13 @@
                         <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="{{ route('admin.user.create') }}">
                             <i class="zmdi zmdi-plus"></i>Thêm mới thành viên</a>
                         <!-- <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                            <select class="js-select2" name="type">
-                                <option selected="selected">Export</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                            </select>
-                            <div class="dropDownSelect2"></div>
-                        </div> -->
+                                        <select class="js-select2" name="type">
+                                            <option selected="selected">Export</option>
+                                            <option value="">Option 1</option>
+                                            <option value="">Option 2</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div> -->
                     </div>
                 </div>
 
@@ -99,123 +99,169 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature center-icon">
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title=""
-                                                    data-original-title="Edit">
+                                                <a class="item" data-toggle="tooltip" data-placement="top"
+                                                    href="{{ route('admin.user.edit', $user->id) }}" data-original-title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title=""
-                                                    data-original-title="Delete">
+                                                </a>
+                                                <!-- <form action="{{ route('admin.user.delete', $user->id) }}" method="POST"
+                                                                            onsubmit="return confirm('Xóa người dùng này?')">
+                                                                            @csrf -->
+                                                <!-- <button type="submit" class="item" data-toggle="modal"
+                                                                                data-target="#staticModal">
+                                                                                <i class="zmdi zmdi-delete"></i>
+                                                                            </button> -->
+                                                <button type="button" class="item btn-delete" data-id="{{ $user->id }}">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </button>
+                                                <!--
+                                                                        </form> -->
+                                                <!-- <a class="item" data-toggle="tooltip" data-placement="top" href="{{ route('admin.user.delete', $user->id) }}
+                                                                                        data-original-title="Delete">
+                                                                                        <i class="zmdi zmdi-delete"></i>
+                                                                                    </a> -->
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
                             @endif
 
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    document.querySelectorAll('.btn-delete').forEach(button => {
+                                        button.addEventListener('click', function () {
+                                            const userId = this.getAttribute('data-id');
 
+                                            Swal.fire({
+                                                title: 'Bạn có chắc chắn muốn xoá?',
+                                                text: "Người dùng này sẽ bị xoá vĩnh viễn!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#d33',
+                                                cancelButtonColor: '#3085d6',
+                                                confirmButtonText: 'Xóa',
+                                                cancelButtonText: 'Huỷ'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    const form = document.createElement('form');
+                                                    form.method = 'POST';
+                                                    form.action = `/admin/user/delete/${userId}`;
+
+                                                    const csrf = document.createElement('input');
+                                                    csrf.type = 'hidden';
+                                                    csrf.name = '_token';
+                                                    csrf.value = '{{ csrf_token() }}';
+
+                                                    form.appendChild(csrf);
+                                                    document.body.appendChild(form);
+                                                    form.submit();
+                                                }
+                                            });
+                                        });
+                                    });
+                                });
+                            </script>
                             <!-- <tr>
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox" checked="checked">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <div class="table-data__info">
-                                                <h6>lori lynch</h6>
-                                                <span>
-                                                    <a href="#">johndoe@gmail.com</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="role user">user</span>
-                                        </td>
-                                        <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option value="">Full Control</option>
-                                                    <option value="" selected="selected">Post</option>
-                                                    <option value="">Watch</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="more">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <div class="table-data__info">
-                                                <h6>lori lynch</h6>
-                                                <span>
-                                                    <a href="#">johndoe@gmail.com</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="role user">user</span>
-                                        </td>
-                                        <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option value="">Full Control</option>
-                                                    <option value="" selected="selected">Post</option>
-                                                    <option value="">Watch</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="more">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <div class="table-data__info">
-                                                <h6>lori lynch</h6>
-                                                <span>
-                                                    <a href="#">johndoe@gmail.com</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="role member">member</span>
-                                        </td>
-                                        <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option selected="selected">Full Control</option>
-                                                    <option value="">Post</option>
-                                                    <option value="">Watch</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="more">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </span>
-                                        </td>
-                                    </tr> -->
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox" checked="checked">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>lori lynch</h6>
+                                                            <span>
+                                                                <a href="#">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="role user">user</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="rs-select2--trans rs-select2--sm">
+                                                            <select class="js-select2" name="property">
+                                                                <option value="">Full Control</option>
+                                                                <option value="" selected="selected">Post</option>
+                                                                <option value="">Watch</option>
+                                                            </select>
+                                                            <div class="dropDownSelect2"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="more">
+                                                            <i class="zmdi zmdi-more"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>lori lynch</h6>
+                                                            <span>
+                                                                <a href="#">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="role user">user</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="rs-select2--trans rs-select2--sm">
+                                                            <select class="js-select2" name="property">
+                                                                <option value="">Full Control</option>
+                                                                <option value="" selected="selected">Post</option>
+                                                                <option value="">Watch</option>
+                                                            </select>
+                                                            <div class="dropDownSelect2"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="more">
+                                                            <i class="zmdi zmdi-more"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>lori lynch</h6>
+                                                            <span>
+                                                                <a href="#">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="role member">member</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="rs-select2--trans rs-select2--sm">
+                                                            <select class="js-select2" name="property">
+                                                                <option selected="selected">Full Control</option>
+                                                                <option value="">Post</option>
+                                                                <option value="">Watch</option>
+                                                            </select>
+                                                            <div class="dropDownSelect2"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="more">
+                                                            <i class="zmdi zmdi-more"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -227,4 +273,5 @@
             <!-- END USER DATA-->
         </div>
     </div>
+
 @endsection

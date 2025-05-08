@@ -46,12 +46,15 @@ Route::middleware(AuthMiddle::class)->prefix('admin')->group(function(){
         Route::get('/', [UserController::class, 'index'])->name('admin.user');
         Route::get('create', [UserController::class, 'create'])->name('admin.user.create');
         Route::post('store', [UserController::class, 'store'])->name('admin.user.store');
+        Route::get('edit/{id}', [UserController::class, 'edit'])->where(['id' => '[0-9]+'])->name('admin.user.edit');
+        Route::post('edit/{id}', [UserController::class, 'update'])->where(['id' => '[0-9]+'])->name('admin.user.update');
+        Route::post('delete/{id}', [UserController::class, 'delete'])->where(['id' => '[0-9]+'])->name('admin.user.delete');
+        //ajax
+        Route::get('ajax/districts', [LocationController::class, 'districts'])->name('ajax.districts');
+        Route::get('ajax/ward', [LocationController::class, 'ward'])->name('ajax.ward');
+        Route::get('edit/ajax/districts', [LocationController::class, 'districts'])->name('ajax.districts');
+        Route::get('edit/ajax/ward', [LocationController::class, 'ward'])->name('ajax.ward');
     });
-
-    //ajax
-    Route::get('user/ajax/districts', [LocationController::class, 'districts'])->name('user.ajax.districts');
-    Route::get('user/ajax/ward', [LocationController::class, 'ward'])->name('user.ajax.ward');
-
 
 });
 

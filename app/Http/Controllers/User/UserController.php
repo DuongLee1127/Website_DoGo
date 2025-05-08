@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\District;
 use App\Models\User;
 use App\Models\Ward;
@@ -47,7 +48,8 @@ class UserController extends Controller
         $provinces = $this->userService->province();
         $wards = Ward::all();
         $config['seo'] = config('user');
-        return view('admin.users.create', compact('config', 'provinces'));
+        $config['method'] = 'create';
+        return view('admin.users.store', compact('config', 'provinces'));
     }
 
     /**
@@ -58,7 +60,23 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+
+        $success = array(
+
+            'message' => 'Thêm mới bản ghi thành công',
+            'alert-type' => 'success'
+
+        );
+        $error = array(
+
+            'message' => 'Thêm mới bản ghi thất bại. Thử lại',
+            'alert-type' => 'error'
+
+        );
+        if($this->userService->createS($request)){
+            return redirect()->route('admin.user')->with($success);
+        }
+        return redirect()->route('admin.user')->with($error);
     }
 
     /**
@@ -80,7 +98,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->userService->findById($id);
+        $config = [
+            'js' => 'admin_assets/library/location.js'
+            ];
+
+        $provinces = $this->userService->province();
+        $wards = Ward::all();
+        $config['seo'] = config('user');
+        $config['method'] = 'update';
+        return view('admin.users.store', compact('config', 'provinces', 'user'));
     }
 
     /**
@@ -90,9 +117,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        $success = array(
+
+            'message' => 'Sửa bản ghi thành công',
+            'alert-type' => 'success'
+
+        );
+        $error = array(
+
+            'message' => 'Sửa bản ghi thất bại. Thử lại',
+            'alert-type' => 'error'
+
+        );
+        if($this->userService->updateS($request, $id)){
+            return redirect()->route('admin.user')->with($success);
+        }
+        return redirect()->route('admin.user')->with($error);
     }
 
     /**
@@ -104,5 +146,25 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function delete($id)
+    {
+        //
+        $success = array(
+
+            'message' => 'Xóa bản ghi thành công',
+            'alert-type' => 'success'
+
+        );
+        $error = array(
+
+            'message' => 'Xóa bản ghi thất bại. Thử lại',
+            'alert-type' => 'error'
+
+        );
+        if($this->userService->deleteS($id)){
+            return redirect()->back()->with($success);
+        }
+        return redirect()->back()->with($error);
     }
 }

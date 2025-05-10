@@ -35,6 +35,22 @@
     top: 0;
 }
 
+/* custom input search */
+
+.table-data__tool-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-data__tool-right .input-group {
+    margin-bottom: 0;
+}
+
+.au-btn--green {
+    white-space: nowrap;
+}
+
 /* custom error message */
 
 .alert-danger {

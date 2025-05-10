@@ -23,13 +23,14 @@ class UserController extends Controller
     public function __construct(UserService $userService){
         $this->userService = $userService;
     }
-    public function index()
+    public function index(Request $request)
     {
 
         // $users = User::paginate(6);
 
-        $users = $this->userService->paginate();
+        $users = $this->userService->paginate($request);
         $config = config('user');
+        $config['js'] = 'admin_assets/library/formRender.js';
 
         return view('admin.users.users', compact('users', 'config'));
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Ajax\FormRenderController;
 use App\Http\Controllers\Ajax\LocationController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -54,8 +55,11 @@ Route::middleware(AuthMiddle::class)->prefix('admin')->group(function(){
         Route::get('ajax/ward', [LocationController::class, 'ward'])->name('ajax.ward');
         Route::get('edit/ajax/districts', [LocationController::class, 'districts'])->name('ajax.districts');
         Route::get('edit/ajax/ward', [LocationController::class, 'ward'])->name('ajax.ward');
+
+
     });
 
+    Route::get('ajax/records', [FormRenderController::class, 'record'])->name('ajax.records');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

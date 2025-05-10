@@ -22,8 +22,17 @@ class UserService extends BaseService implements UserServiceInterface
         $this->model = $model;
     }
 
-    public function paginate(){
-        return User::paginate(perPage: 6);
+    public function paginate($request){
+        $column = ['*'];
+        $perpage = addslashes($request->input('records'));
+        // dd($perpage);
+        $condition['keyword'] = addslashes($request->input('keyword'));
+        $query = $this->model->select($column)->where(function($query) use ($condition){
+            if(isset($condition['keyword']) && !empty($condition['keyword'])){
+                $query->where('name', 'LIKE', '%'.$condition['keyword'].'%');
+            }
+        });
+        return $query->paginate($perpage)->withQueryString()->withPath('user');
     }
 
     public function district($provinceId){

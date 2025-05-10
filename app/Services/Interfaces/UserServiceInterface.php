@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
  */
 interface UserServiceInterface
 {
-    public function paginate();
+    public function paginate($request);
     public function district($provinceId);
     public function province();
     public function findById($id);

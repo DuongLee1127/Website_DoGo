@@ -25,6 +25,7 @@
                                 <option {{ ($perpage == $i) ? 'selected': ''}} value="{{ $i }}">{{ $i }} bản ghi</option>
                                 @endfor
                         </select>
+                        <div class="dropDownSelect2"></div>
                     </div>
                     @php
                         $status = [
@@ -43,6 +44,7 @@
                                 <option {{ ((string)$publish == (string)$key) ? 'selected': '' }} value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
+                        <div class="dropDownSelect2"></div>
                     </div>
                     <button class="au-btn-filter" type="submit">
                                             <i class="zmdi zmdi-filter-list"></i>Lọc</button>
@@ -62,7 +64,6 @@
                         </div>
                         <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="{{ route('admin.post.create') }}">
                             <i class="zmdi zmdi-plus"></i>{{ $config['create']['title'] }}</a>
-
                         </div>
                     </div>
                 </form>
@@ -210,9 +211,6 @@
                                         });
                                     });
                                 });
-                            });
-                            $(document).ready(function() {
-                                $('.js-select2').select2();
                             });
                         </script>
                         <!-- <tr>

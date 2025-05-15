@@ -9,14 +9,18 @@
             $('.ck-editor').each(function () {
                 let editor = $(this)
                 let elementId = editor.attr('id')
-                HT.ckeditor4(elementId);
+                let elementHeight = editor.attr('data-height')
+                HT.ckeditor4(elementId, elementHeight);
             });
         }
 
     }
-    HT.ckeditor4 = (elementId) => {
+    HT.ckeditor4 = (elementId, height) => {
+        if(typeof(height) == 'undefined'){
+            height = 500;
+        }
         CKEDITOR.replace(elementId, {
-            height: 250,
+            height: height,
             removeButtons: '',
             entities: true,
             allowedContent: true,
@@ -37,13 +41,12 @@
                 { name: 'style' },
             ],
             extraPlugins: 'uploadimage,clipboard',
-            uploadUrl: '/uploads',
             filebrowserUploadMethod: 'form',
             clipboard_handleImages: true,
             filebrowserBrowseUrl: '../../admin_assets/plugins/responsive_filemanager/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
-            filebrowserUploadUrl: '../../admin_assets/plugins/responsive_filemanager/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
-            filebrowserImageBrowseUrl: '../../admin_assets/plugins/responsive_filemanager/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr=',
-            filebrowserUploadUrl: "../../admin_assets/plugins/responsive_filemanager/responsive_filemanager/filemanager/upload.php?type=Images",
+            filebrowserUploadUrl: '../../admin_assets/plugins/responsive_filemanager/responsive_filemanager/filemanager/upload.php',
+            uploadUrl: '../../admin_assets/plugins/responsive_filemanager/responsive_filemanager/filemanager/upload.php',
+            imageUploadUrl: '../../admin_assets/plugins/responsive_filemanager/responsive_filemanager/filemanager/upload.php',
         });
     }
 

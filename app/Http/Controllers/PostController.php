@@ -37,8 +37,8 @@ class PostController extends Controller
     {
         $config['js'] = [
                 'admin_assets/library/location.js',
-                'admin_assets/library/finder.js',
                 'admin_assets/library/ckeditor.js',
+                'admin_assets/library/uploadAvatar.js',
             ];
         $config['seo'] = config('post');
         $config['method'] = 'create';
@@ -52,26 +52,26 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(StorePostRequest $request)
-    // {
+    public function store(StorePostRequest $request)
+    {
 
-    //     $success = array(
+        $success = array(
 
-    //         'message' => 'Thêm mới bản ghi thành công',
-    //         'alert-type' => 'success'
+            'message' => 'Thêm mới bản ghi thành công',
+            'alert-type' => 'success'
 
-    //     );
-    //     $error = array(
+        );
+        $error = array(
 
-    //         'message' => 'Thêm mới bản ghi thất bại. Thử lại',
-    //         'alert-type' => 'error'
+            'message' => 'Thêm mới bản ghi thất bại. Thử lại',
+            'alert-type' => 'error'
 
-    //     );
-    //     if($this->postService->createS($request)){
-    //         return redirect()->route('admin.user')->with($success);
-    //     }
-    //     return redirect()->route('admin.user')->with($error);
-    // }
+        );
+        if($this->postService->createS($request)){
+            return redirect()->route('admin.user')->with($success);
+        }
+        return redirect()->route('admin.user')->with($error);
+    }
 
     /**
      * Display the specified resource.

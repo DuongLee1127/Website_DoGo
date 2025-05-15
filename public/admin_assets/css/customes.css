@@ -211,5 +211,81 @@ tr.tr-active.checked {
     color: #4d5156;
 }
 
+.catef {
+    margin-bottom: .3rem;
+}
+.form-group small {
+    display: block;
+    margin-bottom: .8rem;
+}
+
+.img-target {
+    cursor: pointer;
+}
+.img-target img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+/* Tăng kích thước modal */
+.modal-dialog {
+    max-width: 90%; /* Điều chỉnh độ rộng của modal */
+    margin: 30px auto;/* Căn giữa modal theo chiều ngang và tạo khoảng cách trên dưới */
+}
+
+/* Cải thiện phong cách khung modal */
+.modal-content {
+    border-radius: 10px; /* Bo góc cho modal */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Thêm hiệu ứng đổ bóng tạo chiều sâu */
+    background-color: #f8f9fa; /* Đổi màu nền, bạn có thể thay đổi theo sở thích */
+    padding: 20px; /* Tăng khoảng cách bên trong khung modal */
+    height: 80vh;
+}
+
+.modal-body {
+    padding: 0; /* Bỏ padding để iframe chiếm hết không gian */
+}
+.modal-body iframe {
+    width: 100%;    /* Chiếm toàn bộ chiều ngang modal */
+    height: 100%;   /* Chiếm toàn bộ chiều cao của modal-body */
+    border: 0;      /* Bỏ đường viền nếu không cần thiết */
+}
+
+/* Cập nhật giao diện của header và footer */
+.modal-header,
+.modal-footer {
+    border: none; /* Loại bỏ viền mặc định */
+    padding: 10px 20px; /* Tăng padding để đẹp hơn */
+}
+
+/* Tăng kích thước title */
+.modal-title {
+    font-size: 1.5rem; /* Tăng kích thước chữ cho tiêu đề modal */
+    font-weight: 600; /* In đậm tiêu đề */
+}
+
+/* Tùy chỉnh các nút bên trong modal */
+.btn-confirm,
+.btn-cancel {
+    padding: 10px 20px; /* Tăng padding cho nút */
+    border-radius: 5px; /* Bo tròn góc cho nút */
+    font-size: 1rem;
+}
+
+/* Nút xác nhận */
+.btn-confirm {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: #fff;
+}
+
+/* Nút hủy */
+.btn-cancel {
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    color: #fff;
+}
+
 
 

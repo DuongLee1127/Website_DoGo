@@ -149,7 +149,7 @@
                 </li>
                 <li class="{{ request()->is('admin/post*') ? 'active' : ''}} has-sub">
                     <a class="js-arrow" href="{{ route('admin.post')}}">
-                        <i class="fas fa-copy"></i>Quản lý sản phẩm</a>
+                        <i class="fas fa-copy"></i>Quản lý bài viết</a>
                 </li>
                 <li>
                     <a href="#">

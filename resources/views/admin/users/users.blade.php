@@ -27,17 +27,18 @@
                                 <option {{ ($perpage == $i) ? 'selected': ''}} value="{{ $i }}">{{ $i }} bản ghi</option>
                                 @endfor
                         </select>
+                        <div class="dropDownSelect2"></div>
                     </div>
                     @php
                         $status = [
-                            'Không hoạt động',
-                            'Hoạt động'
+                            '-1' => 'Chọn trạng thái',
+                            '0' => 'Không hoạt động',
+                            '1' => 'Hoạt động'
                         ];
                         $publish = old('publish', request('publish'));;
                     @endphp
                     <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
                         <select class="js-select2 css-publish" name="publish">
-                            <option value="-1">Chọn trạng thái</option>
                             <!-- <option value="0">Không hoạt động</option>
                             <option value="1">Hoạt động</option> -->
 
@@ -45,6 +46,7 @@
                                 <option {{ ((string)$publish == (string)$key) ? 'selected': '' }} value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
+                        <div class="dropDownSelect2"></div>
                     </div>
                     <button class="au-btn-filter" type="submit">
                                             <i class="zmdi zmdi-filter-list"></i>Lọc</button>
@@ -215,9 +217,7 @@
                                     });
                                 });
                             });
-                            $(document).ready(function() {
-                                $('.js-select2').select2();
-                            });
+
                         </script>
                         <!-- <tr>
                                                         <td>

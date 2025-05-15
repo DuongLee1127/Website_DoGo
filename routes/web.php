@@ -3,6 +3,7 @@
 use App\Http\Controllers\Ajax\StatusController;
 use App\Http\Controllers\Ajax\LocationController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Middleware\AuthMiddle;
 use Illuminate\Routing\Router;
@@ -21,9 +22,7 @@ use App\Http\Controllers\PostController;
 |
 */
 Route::prefix('client')->group(function(){
-    Route::get('/', function () {
-        return view('client.home');
-    });
+    Route::get('/', [HomeController::class, 'index'])->name('client');
 
 });
 

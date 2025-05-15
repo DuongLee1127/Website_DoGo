@@ -5,7 +5,7 @@
             <h4 class="p-b-5">{{ $config['seo']['index']['title'] }}</h4>
             <small>Dashboard / <strong>{{ $config['seo']['index']['title'] }}</strong></small>
         </div>
-        <div class="user-data m-b-30">
+        <div class="m-b-30">
             @php
                 $url = ($config['method'] == 'create') ? route('admin.user.store'): route('admin.user.update', $user->id)
             @endphp
@@ -199,7 +199,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-right">
+                <div class="text-right">
                     <button type="submit" class="btn btn-primary btn-sm" name="send" value="send">
                         <i class="fa fa-save"></i> Lưu
                     </button>

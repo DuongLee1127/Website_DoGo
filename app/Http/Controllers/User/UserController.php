@@ -44,8 +44,6 @@ class UserController extends Controller
     public function create()
     {
         $config['js'] = ['admin_assets/library/location.js',
-                'admin_assets/library/finder.js',
-                'admin_assets/plugins/ckfinder/ckfinder.js'
             ];
 
         $provinces = $this->userService->province();

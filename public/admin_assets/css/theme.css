@@ -552,7 +552,7 @@ section {
     -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.03);
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.03);
     padding: 0 15px;
-    line-height: 40px;
+    line-height: 38px;
     text-transform: capitalize;
 }
 
@@ -1124,7 +1124,7 @@ section {
     display: none;
 }
 
-.au-checkbox input:checked ~ .au-checkmark:after {
+.checked .au-checkmark::after {
     display: block;
 }
 
@@ -3950,11 +3950,10 @@ section {
 .user-data {
     border: 1px solid #e5e5e5;
     background: #fff;
-    padding-top: 44px;
 }
 
 .user-data .title-3 {
-    padding-left: 40px;
+    padding-left: 35px;
     padding-right: 55px;
 }
 
@@ -4575,7 +4574,6 @@ section {
     -moz-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    margin-bottom: 28px;
 }
 
 .table-data__tool .table-data__tool-left > div {

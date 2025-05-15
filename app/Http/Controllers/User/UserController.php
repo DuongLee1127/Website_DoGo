@@ -30,9 +30,10 @@ class UserController extends Controller
 
         $users = $this->userService->paginate($request);
         $config = config('user');
-        $config['js'] = 'admin_assets/library/formRender.js';
+        $config['js'] = ['admin_assets/library/library.js'];
+        $template = 'admin.users.users';
 
-        return view('admin.users.users', compact('users', 'config'));
+        return view('admin.layouts.layout', compact('users', 'config', 'template'));
     }
 
     /**
@@ -42,15 +43,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        $config = [
-            'js' => 'admin_assets/library/location.js'
+        $config['js'] = ['admin_assets/library/location.js',
+                'admin_assets/library/finder.js',
+                'admin_assets/plugins/ckfinder/ckfinder.js'
             ];
 
         $provinces = $this->userService->province();
         $wards = Ward::all();
         $config['seo'] = config('user');
         $config['method'] = 'create';
-        return view('admin.users.store', compact('config', 'provinces'));
+        $template = 'admin.users.store';
+        return view('admin.layouts.layout', compact('config', 'provinces', 'template'));
     }
 
     /**
@@ -100,15 +103,15 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->userService->findById($id);
-        $config = [
-            'js' => 'admin_assets/library/location.js'
+        $config['js'] = ['admin_assets/library/location.js'
             ];
 
         $provinces = $this->userService->province();
         $wards = Ward::all();
         $config['seo'] = config('user');
         $config['method'] = 'update';
-        return view('admin.users.store', compact('config', 'provinces', 'user'));
+        $template = 'admin.users.store';
+        return view('admin.layouts.layout', compact('config', 'provinces', 'user', 'template'));
     }
 
     /**

@@ -28,7 +28,8 @@ class User extends Authenticatable
         'ward_id',
         'role_id',
         'description',
-        'detail_address'
+        'detail_address',
+        'status',
     ];
 
     /**

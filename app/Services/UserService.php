@@ -24,14 +24,22 @@ class UserService extends BaseService implements UserServiceInterface
 
     public function paginate($request){
         $column = ['*'];
-        $perpage = addslashes($request->input('records'));
+        $perpage = (addslashes($request->input('records'))==''?6:addslashes($request->input('records')));
         // dd($perpage);
         $condition['keyword'] = addslashes($request->input('keyword'));
+        $condition['publish'] = addslashes($request->input('publish'));
+        // dd($condition['publish']);
         $query = $this->model->select($column)->where(function($query) use ($condition){
             if(isset($condition['keyword']) && !empty($condition['keyword'])){
-                $query->where('name', 'LIKE', '%'.$condition['keyword'].'%');
+                $query->where('name', 'LIKE', '%'.$condition['keyword'].'%')
+                ->orWhere('email', 'LIKE', '%'.$condition['keyword'].'%')
+                ->orWhere('phone', 'LIKE', '%'.$condition['keyword'].'%');
+            }
+            if(isset($condition['publish']) && (string)$condition['publish'] != '' && $condition['publish'] != -1){
+                $query->where('status', '=', $condition['publish']);
             }
         });
+
         return $query->paginate($perpage)->withQueryString()->withPath('user');
     }
 
@@ -107,6 +115,27 @@ class UserService extends BaseService implements UserServiceInterface
         DB::beginTransaction();
         try{
             $user->forceDelete();
+        // dd($user);
+            // DB::table('users')->insert($payload);
+            DB::commit();
+            return true;
+        }catch(\Exception $e){
+            DB::rollBack();
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function updateStatus($request){
+        $post = $request->input();
+        $payload[$post['publish']] = ($post['status'] == 1)?0:1;
+        $id = $post['id'];
+
+        $user = $this->model->findOrFail($id);
+        DB::beginTransaction();
+        try{
+
+            $user->update($payload);
         // dd($user);
             // DB::table('users')->insert($payload);
             DB::commit();

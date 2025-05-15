@@ -1,5 +1,3 @@
-@extends('admin.layouts.admin')
-@section('content')
 <div class="row">
     <div class="col-lg-12">
         <!-- USER DATA-->
@@ -7,8 +5,17 @@
             $keyword = request('keyword')?:old('keyword');
             $perpage = request('records')?:old('records');
         @endphp
+
+        <div class="page-title-box">
+            <h4 class="p-b-5">{{ $config['index']['title'] }}</h4>
+            <small>Dashboard / <strong>{{ $config['index']['title'] }}</strong></small>
+        </div>
         <div class="user-data m-b-30">
-            <h3 class="title-3 m-b-30 upper-text ">Bảng điều khiển / {{ $config['index']['title'] }}</h3>
+            <div class="card-header title-3 m-b-30">
+                <h3>
+                    {{ $config['index']['tableName'] }}
+                </h3>
+            </div>
 
 
             <form action="{{ route('admin.user') }}" method="get">
@@ -17,10 +24,30 @@
                     <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
                         <select class="js-select2 records" name="records">
                             @for( $i = 6 ; $i<=180; $i+=6)
-                                <option {{ ($perpage == $i) ? 'selected': '' }} value="{{ $i }}">{{ $i }} bản ghi</option>
+                                <option {{ ($perpage == $i) ? 'selected': ''}} value="{{ $i }}">{{ $i }} bản ghi</option>
                                 @endfor
                         </select>
                     </div>
+                    @php
+                        $status = [
+                            'Không hoạt động',
+                            'Hoạt động'
+                        ];
+                        $publish = old('publish', request('publish'));;
+                    @endphp
+                    <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
+                        <select class="js-select2 css-publish" name="publish">
+                            <option value="-1">Chọn trạng thái</option>
+                            <!-- <option value="0">Không hoạt động</option>
+                            <option value="1">Hoạt động</option> -->
+
+                            @foreach ($status as $key => $value)
+                                <option {{ ((string)$publish == (string)$key) ? 'selected': '' }} value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button class="au-btn-filter" type="submit">
+                                            <i class="zmdi zmdi-filter-list"></i>Lọc</button>
                 </div>
                 <div class="filters m-b-45 table-data__tool-right">
                     <div class="row">
@@ -49,8 +76,8 @@
                     <thead>
                         <tr>
                             <td>
-                                <label class="au-checkbox">
-                                    <input type="checkbox">
+                                <label class="au-checkbox tr-active">
+                                    <input type="checkbox" id="checkAll">
                                     <span class="au-checkmark"></span>
                                 </label>
                             </td>
@@ -65,11 +92,11 @@
                     <tbody>
                         @if(isset($users) && is_object($users))
                         @foreach ($users as $user)
-                        <tr>
+                        <tr class="tr-active">
                             <td>
-                                <label class="au-checkbox">
-                                    <input type="checkbox">
-                                    <span class="au-checkmark"></span>
+                                <label class="au-checkbox" >
+                                    <input type="checkbox" class="checkBoxItem">
+                                    <span class="au-checkmark au-checkBoxItem"></span>
                                 </label>
                             </td>
                             <td>
@@ -81,7 +108,30 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="role admin">{{ $user->role }}</span>
+                                <span class="role
+                                    @switch($user->role_id)
+                                        @case(1)
+                                            {{ 'admin' }}
+                                            @break
+                                        @case(2)
+                                            {{ 'member' }}
+                                            @break
+                                        @default
+                                            {{ 'member' }}
+                                            @break
+                                    @endswitch()">
+                                    @switch($user->role_id)
+                                        @case(1)
+                                            {{ 'Quản trị viên' }}
+                                            @break
+                                        @case(2)
+                                            {{ 'Cộng tác viên' }}
+                                            @break
+                                        @default
+                                            {{ 'Cộng tác viên' }}
+                                            @break
+                                    @endswitch()
+                                </span>
                             </td>
                             <td>
                                 <div class="rs-select2--trans rs-select2--sm">
@@ -98,9 +148,7 @@
                             </td>
                             <td>
                                 <label class="switch switch-3d switch-success mr-3">
-                                    <input type="checkbox" class="switch-input" @if (isset($user->status) && $user->status == '1')
-                                    checked
-                                    @endif>
+                                    <input type="checkbox" data-modalId="{{ $user->id }}" data-publish="status" value="{{ $user->status }}" class="switch-input status" {{ ($user->status == '1')?'checked':'' }}/>
                                     <span class="switch-label"></span>
                                     <span class="switch-handle"></span>
                                 </label>
@@ -284,5 +332,3 @@
         <!-- END USER DATA-->
     </div>
 </div>
-<script src="{{ asset($config['js']) }}"></script>
-@endsection

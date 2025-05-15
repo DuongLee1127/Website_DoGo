@@ -1,10 +1,11 @@
-@extends('admin.layouts.admin')
-@section('content')
 <div class="row">
     <div class="col-lg-12">
         <!-- USER DATA-->
+         <div class="page-title-box">
+            <h4 class="p-b-5">{{ $config['seo']['index']['title'] }}</h4>
+            <small>Dashboard / <strong>{{ $config['seo']['index']['title'] }}</strong></small>
+        </div>
         <div class="user-data m-b-30">
-            <h3 class="title-3 m-b-30 upper-text ">Bảng điều khiển / {{ $config['seo']['create']['title'] }}</h3>
             @php
                 $url = ($config['method'] == 'create') ? route('admin.user.store'): route('admin.user.update', $user->id)
             @endphp
@@ -97,10 +98,10 @@
                                 @endif
                                 <div class="row form-group">
                                     <div class="col col-md-4">
-                                        <label for="img-input" class=" form-control-label">Ảnh đại diện</label>
+                                        <label for="upload-image" class=" form-control-label">Ảnh đại diện</label>
                                     </div>
                                     <div class="col-12 col-md-8">
-                                        <input type="file" id="img-input" name="img-input" class="form-control-file">
+                                        <input type="text" id="upload-image" name="image" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +219,4 @@
     var district_id = '{{ (isset($user->district_id)) ? $user->district_id : old('district_id') }}';
     var ward_id = '{{ (isset($user->ward_id)) ? $user->ward_id : old('ward_id') }}';
 </script>
-<script src="{{ asset($config['js']) }}"></script>
-@endsection
-
 

@@ -12,7 +12,7 @@
 }
 
 .text-danger {
-    color: red;
+    font-size: 0.85rem;
 }
 
 .select2-container .select2-selection--single {
@@ -125,6 +125,91 @@
     background-color: #f8f9fa;
 }
 
+tr.tr-active.checked {
+    background-color: #e6fbe9;
+}
+/* 6  */
+
+
+.au-btn-filter {
+    border: 1px solid #dee2e6;
+}
+
+[title='Không hoạt động'] {
+    padding-right: 15px;
+}
+
+
+
+/* custom title */
+    .page-title-box {
+    background: #fff;
+    color: #333;
+    padding: 20px 30px;
+    border-radius: 1px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+}
+
+.page-title-box h4 {
+    margin: 0;
+    font-weight: 550;
+    font-size: 1.7rem;
+    color: #555; /* Chữ đậm hơn một chút */
+}
+
+.page-title-box small {
+    font-size: 0.85rem;
+    color: #777; /* Màu chữ phụ xám nhẹ */
+}
+
+.user-data h3 {
+    color: #444;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+/* cấu hình seo */
+
+.search-result {
+    font-family: Arial, sans-serif;
+    max-width: 100%;
+    line-height: 1.4;
+    color: #202124;
+    margin: 20px;
+
+}
+
+.search-url {
+    font-size: 14px;
+    color: #4d5156;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    margin-left: 10px;
+}
+
+.search-url img {
+    width: 16px;
+    height: 16px;
+}
+
+.search-title a {
+    color: #1a0dab;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.search-title a:hover {
+    text-decoration: underline;
+}
+
+.search-description {
+    font-size: 14px;
+    color: #4d5156;
+}
 
 
 

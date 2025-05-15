@@ -16,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $bindings = [
             \App\Services\Interfaces\UserServiceInterface::class => \App\Services\UserService::class,
-            \App\Services\Interfaces\BaseServiceInterface::class => \App\Services\BaseService::class
+            \App\Services\Interfaces\BaseServiceInterface::class => \App\Services\BaseService::class,
+            \App\Services\Interfaces\PostServiceInterface::class => \App\Services\PostService::class,
         ];
         foreach ($bindings as $interface => $implementation) {
             $this->app->bind($interface, $implementation);

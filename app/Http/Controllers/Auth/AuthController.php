@@ -16,7 +16,7 @@ class AuthController extends Controller
         }
         return view('admin.auth.login');
     }
-    
+
     public function doLogin(AuthRequest $request){
         $checkAcount = [
             'email' => $request->input('email'),

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8bd85629c8aa8075aa202a571d23292b",
+    "content-hash": "7ad1404e1bcfd1697d36381272e5fb24",
     "packages": [
         {
             "name": "brick/math",
@@ -3157,6 +3157,53 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "servocoder/richfilemanager",
+            "version": "v2.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/servocoder/RichFilemanager.git",
+                "reference": "4a5a0cb5c5acfd1bf6d59e7be505fb073dbb1031"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/servocoder/RichFilemanager/zipball/4a5a0cb5c5acfd1bf6d59e7be505fb073dbb1031",
+                "reference": "4a5a0cb5c5acfd1bf6d59e7be505fb073dbb1031",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 5.4.0"
+            },
+            "type": "project",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Solomienko",
+                    "email": "servocoder@gmail.com",
+                    "homepage": "http://fm.devale.pro",
+                    "role": "Developer"
+                }
+            ],
+            "description": "RichFilemanager - highly customizable open-source file manager",
+            "keywords": [
+                "JS",
+                "file",
+                "filemanager",
+                "fileupload",
+                "manager",
+                "php",
+                "rich",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/servocoder/RichFilemanager/issues",
+                "source": "https://github.com/servocoder/RichFilemanager/tree/v2.3.3"
+            },
+            "time": "2017-04-30T10:55:09+00:00"
         },
         {
             "name": "symfony/console",

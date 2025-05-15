@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Ajax\FormRenderController;
+use App\Http\Controllers\Ajax\StatusController;
 use App\Http\Controllers\Ajax\LocationController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -8,6 +8,7 @@ use App\Http\Middleware\AuthMiddle;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +59,22 @@ Route::middleware(AuthMiddle::class)->prefix('admin')->group(function(){
 
 
     });
+    Route::post('ajax/status', [StatusController::class, 'status']);
 
-    Route::get('ajax/records', [FormRenderController::class, 'record'])->name('ajax.records');
+    Route::prefix('/post')->group(function(){
+        Route::get('/', [PostController::class, 'index'])->name('admin.post');
+        Route::get('create', [PostController::class, 'create'])->name('admin.post.create');
+        Route::post('store', [PostController::class, 'store'])->name('admin.post.store');
+        Route::get('edit/{id}', [PostController::class, 'edit'])->where(['id' => '[0-9]+'])->name('admin.post.edit');
+        Route::post('edit/{id}', [PostController::class, 'update'])->where(['id' => '[0-9]+'])->name('admin.post.update');
+        Route::post('delete/{id}', [PostController::class, 'delete'])->where(['id' => '[0-9]+'])->name('admin.post.delete');
+    });
 });
+
+
+Route::get('filemanager', function () {
+    return view('filemanager.index');
+});
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

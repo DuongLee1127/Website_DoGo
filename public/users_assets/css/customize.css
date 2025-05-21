@@ -1,0 +1,65 @@
+
+.customize-text {
+    color: #3E2723;
+}
+
+a {
+    color: #5D4037;
+}
+
+.customize-text-second {
+    color: #3E2723;
+}
+
+.customize-shadow {
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.btn-customize {
+    color: rgb(0, 0, 0);
+    background-color: #8B5E3C;
+    border-color: rgb(84, 57, 0);
+}
+
+.border-customize {
+    border: 1px solid !important;
+    border-color: #D2B48C !important;
+}
+
+.slider-button {
+    background-color: #D4A373;
+    color: white;
+}
+
+.banner-title {
+  color: #FAF3E0 !important; /* Trắng ngà */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Đổ bóng để dễ đọc */
+}
+
+.bg-customize {
+    background-color:#C28452;
+}
+.bg-customize2 {
+    background-color:#D4A373;
+}
+
+.w500 {
+    width: 500px !important;
+    height: 350px !important;
+    object-fit: cover;
+}
+.w30 {
+    width: 40%;
+    height: auto;
+}
+
+.square {
+    width: 172px;
+    height: 172px;
+    object-fit: cover;
+}
+.feature-img {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+}

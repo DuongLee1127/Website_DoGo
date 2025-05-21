@@ -18,6 +18,12 @@ class HomeController extends Controller
         return view('client/layouts/layout', compact('template'));
     }
 
+    public function product()
+    {
+        $template = 'client/products';
+        return view('client/layouts/layout', compact('template'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

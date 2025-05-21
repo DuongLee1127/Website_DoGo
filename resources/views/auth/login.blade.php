@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('content')
-    
+
 <div class="page-wrapper">
         <div class="page-content--bge5">
             <div class="container">
@@ -44,19 +44,7 @@
                                     </label>
                                 </div>
                                 <button type="submit" class="au-btn au-btn--block au-btn--green m-b-20">{{ __('Đăng nhập') }}</button>
-                                <div class="social-login-content">
-                                    <div class="social-button">
-                                        <button class="au-btn au-btn--block au-btn--blue m-b-20">Đăng nhập với facebook</button>
-                                        <button class="au-btn au-btn--block au-btn--blue2">Đăng nhập với Twitter</button>
-                                    </div>
-                                </div>
                             </form>
-                            <div class="register-link">
-                                <p>
-                                    Bạn không có tài khoản?
-                                    <a href="#">Đăng ký tại đây</a>
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>

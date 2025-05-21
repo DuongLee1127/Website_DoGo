@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\PostServiceInterface as PostService;
 
@@ -35,12 +36,14 @@ class PostController extends Controller
      */
     public function create()
     {
+        $config['seo'] = config('post');
         $config['js'] = [
                 'admin_assets/library/location.js',
                 'admin_assets/library/ckeditor.js',
+                'admin_assets/library/seo.js',
                 'admin_assets/library/uploadAvatar.js',
             ];
-        $config['seo'] = config('post');
+
         $config['method'] = 'create';
         $template = 'admin.post.store';
         return view('admin.layouts.layout', compact('config', 'template'));

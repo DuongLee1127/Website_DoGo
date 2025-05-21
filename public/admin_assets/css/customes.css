@@ -287,5 +287,16 @@ tr.tr-active.checked {
     color: #fff;
 }
 
+.input-url {
+    position: relative;
+    padding-left: 115px;
+}
+
+.baseUrl {
+    position: absolute;
+    top: 15%;
+    left: 3%;
+}
+
 
 

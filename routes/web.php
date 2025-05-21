@@ -23,6 +23,8 @@ use App\Http\Controllers\PostController;
 */
 Route::prefix('client')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('client');
+    Route::get('/shop', [HomeController::class, 'product'])->name('client.product');
+
 
 });
 

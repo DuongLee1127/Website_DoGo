@@ -48,9 +48,7 @@
                                     <div class="col-12 col-md-10">
                                         <textarea type="text" id="description" name="description"
                                             placeholder="Nhập mô tả ngắn" class="form-control ck-editor"
-                                            data-height="150"
-                                            value="{{ old('description', ($posts->description) ?? '') }}">
-                                            </textarea>
+                                            data-height="150">{{ old('description', ($posts->description) ?? '') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -60,9 +58,7 @@
                                     </div>
                                     <div class="col-12 col-md-10">
                                         <textarea type="text" id="content" name="content" placeholder="Nhập nội dung"
-                                            class="form-control ck-editor" data-height="500"
-                                            value="{{ old('content', ($posts->content) ?? '') }}">
-                                            </textarea>
+                                            class="form-control ck-editor" data-height="500">{{ old('content', ($posts->content) ?? '') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -74,24 +70,21 @@
                             <div class="search-result">
                                 <div class="search-url">
                                     <img src="https://www.google.com/s2/favicons?domain=metatft.com" alt="favicon">
-                                    <span>https://www.metatft.com › comps</span>
+                                    <span class="urlSeo">http://public/{{ old('link', 'abc.html') }}</span>
                                 </div>
                                 <div class="search-title">
-                                    <a href="#">Best TFT Meta Comps & Builds - Set 14 [Patch 14.3]</a>
+                                    <a href="#" class="title-name">{{ old('keywordseo', 'Bạn chưa nhập tiêu đề SEO') }}</a>
                                 </div>
-                                <div class="search-description">
-                                    Discover data on <strong>TFT</strong> Comps, Builds, Items, Augments and more. Get
-                                    all the Teamfight Tactics information & tools you need with MetaTFT.
-                                </div>
+                                <div class="search-description">{{ old('descriptionSeo', 'Bạn chưa nhập mô tả SEO') }}</div>
                             </div>
                             <div class="card-body card-block">
                                 <div class="row form-group">
                                     <div class="col col-md-2">
-                                        <label for="keyword" class="form-control-label">Từ khóa SEO</label>
+                                        <label for="keywordseo" class="form-control-label">Từ khóa SEO</label>
                                     </div>
                                     <div class="col-12 col-md-10">
-                                        <input type="text" id="keyword" name="keyword" placeholder="Nhập từ khóa"
-                                            class="form-control" value="{{ old('keyword', ($posts->keyword) ?? '') }}">
+                                        <input type="text" id="keywordseo" name="keywordseo" placeholder="Nhập từ khóa"
+                                            class="form-control" value="{{ old('keywordseo', ($posts->keyword) ?? '') }}">
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -110,7 +103,8 @@
                                     </div>
                                     <div class="col-12 col-md-10">
                                         <input type="text" id="link" name="link" placeholder="Nhập đường dẫn"
-                                            class="form-control" value="{{ old('link', ($posts->link) ?? '') }}">
+                                            class="form-control input-url" value="{{ old('link', ($posts->link) ?? '') }}">
+                                            <span class="baseUrl">http://public/</span>
                                     </div>
                                 </div>
                             </div>
@@ -124,14 +118,11 @@
                                             class="text-danger">(*)</span></label>
                                     <small class="text-danger"><i>*Chọn root nếu không có danh mục cha</i></small>
                                     <div class="">
-                                        <select name="province_id" id="select-province"
+                                        <select name="category" id="select-province"
                                             class="form-control js-select2 province" data-target="districts">
-                                            <option value="0">[Chọn danh mục cha]</option>
-                                            @if(isset($provinces) && is_object($provinces))
-                                            @foreach ($provinces as $province)
-                                            <option @if(old('province_id')==$province->code) selected @endif value="{{ $province->code }}">{{ $province->name }}</option>
+                                            @foreach ($config['seo']['category-list'] as $i => $category)
+                                            <option @if(old('category')==$i) selected @endif value="{{ $i }}">{{ $category }}</option>
                                             @endforeach
-                                            @endif
                                         </select>
                                         <div class="dropDownSelect2"></div>
                                     </div>
@@ -143,8 +134,8 @@
                                 <strong>Chọn ảnh đại diện</strong>
                             </div>
                             <div class="card-body card-block">
-                                <span class="img-target" data-toggle="modal" data-target="#largeModal"><img id="preview" src="{{ asset('admin_assets/images/no-image.jpeg') }}" alt=""></span>
-                                <input type="hidden" name="image" id="uploadi" class="" value="">
+                                <span class="img-target" data-toggle="modal" data-target="#largeModal"><img id="preview" src="{{ asset(old('image')??'admin_assets/images/no-image.jpeg') }}" alt=""></span>
+                                <input type="hidden" name="image" id="uploadi" class="" value="{{ old('image', ($post->image)??'') }}">
                             </div>
                         </div>
                     </div>

@@ -26,7 +26,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'email' => 'required|string|email|unique:users,email,'.$this->id,
             'name' => 'required|string',
-            'role_id' => 'gt:0',
+
         ];
     }
 
@@ -39,7 +39,7 @@ class UpdateUserRequest extends FormRequest
             'name.required' => 'Họ tên không được để trống',
             'name.string' => 'Họ tên phải là dạng ký tự',
             'email.email' => 'Hãy nhập đúng định dạng Email. Ví dụ abc@gmail.com',
-            'role_id' => 'Bạn chưa chọn nhóm thành viên'
+
         ];
     }
 }

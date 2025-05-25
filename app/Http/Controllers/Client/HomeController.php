@@ -14,13 +14,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $config['toastr'] = config('toastr');
         $template = 'client/home';
-        return view('client/layouts/layout', compact('template'));
+        return view('client/layouts/layout', compact('template', 'config'));
     }
 
     public function product()
     {
         $template = 'client/products';
+        return view('client/layouts/layout', compact('template'));
+    }
+
+    public function detail()
+    {
+        $template = 'client/detail';
         return view('client/layouts/layout', compact('template'));
     }
 

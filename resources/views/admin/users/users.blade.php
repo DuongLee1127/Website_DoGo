@@ -18,7 +18,7 @@
             </div>
 
 
-            <form action="{{ route('admin.user') }}" method="get">
+            <form action="{{ route('admin.user.role', ['role' => $role]) }}" method="get">
             <div class="table-data__tool">
                 <div class="filters m-b-45 table-data__tool-left">
                     <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="{{ route('admin.user.create') }}">
+                        <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="{{ route('admin.user.create', ['role' => $role]) }}">
                             <i class="zmdi zmdi-plus"></i>Thêm mới thành viên</a>
 
                         </div>
@@ -158,25 +158,14 @@
                             <td>
                                 <div class="table-data-feature center-icon">
                                     <a class="item" data-toggle="tooltip" data-placement="top"
-                                        href="{{ route('admin.user.edit', $user->id) }}" data-original-title="Edit">
+                                        href="{{ route('admin.user.edit', ['id' => $user->id, 'role' => $role]) }}" data-original-title="Edit">
                                         <i class="zmdi zmdi-edit"></i>
                                     </a>
-                                    <!-- <form action="{{ route('admin.user.delete', $user->id) }}" method="POST"
-                                                                                        onsubmit="return confirm('Xóa người dùng này?')">
-                                                                                        @csrf -->
-                                    <!-- <button type="submit" class="item" data-toggle="modal"
-                                                                                            data-target="#staticModal">
-                                                                                            <i class="zmdi zmdi-delete"></i>
-                                                                                        </button> -->
-                                    <button type="button" class="item btn-delete" data-id="{{ $user->id }}">
+
+                                    <button type="button" class="item btn-delete" data-role="{{ $role }}" data-id="{{ $user->id }}">
                                         <i class="zmdi zmdi-delete"></i>
                                     </button>
-                                    <!--
-                                                                                    </form> -->
-                                    <!-- <a class="item" data-toggle="tooltip" data-placement="top" href="{{ route('admin.user.delete', $user->id) }}
-                                                                                                    data-original-title="Delete">
-                                                                                                    <i class="zmdi zmdi-delete"></i>
-                                                                                                </a> -->
+
                                 </div>
                             </td>
                         </tr>
@@ -188,6 +177,7 @@
                                 document.querySelectorAll('.btn-delete').forEach(button => {
                                     button.addEventListener('click', function() {
                                         const userId = this.getAttribute('data-id');
+                                        const dataRole = this.getAttribute('data-role');
 
                                         Swal.fire({
                                             title: 'Bạn có chắc chắn muốn xoá?',
@@ -202,7 +192,7 @@
                                             if (result.isConfirmed) {
                                                 const form = document.createElement('form');
                                                 form.method = 'POST';
-                                                form.action = `/admin/user/delete/${userId}`;
+                                                form.action = `/admin/user/${dataRole}/delete/${userId}`;
 
                                                 const csrf = document.createElement('input');
                                                 csrf.type = 'hidden';

@@ -33,7 +33,33 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <iframe src="{{ asset('admin_assets/plugins/responsive_filemanager/responsive_filemanager/filemanager/dialog.php?field_id=uploadi') }}" frameborder="0"></iframe>
+                        @if (isset($config['modal']))
+                            <iframe src="{{ asset($config['modal']) }}" frameborder="0"></iframe>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-cancel" data-dismiss="modal">Hủy</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+			<!-- end modal large -->
+
+            <!-- modal product -->
+			<div class="modal fade productModal" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Tiêu đề Modal</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if (isset($config['modal2']) )
+
+                        <iframe src="{{ asset($config['modal2']) }}" frameborder="0"></iframe>
+                        @endif
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-cancel" data-dismiss="modal">Hủy</button>

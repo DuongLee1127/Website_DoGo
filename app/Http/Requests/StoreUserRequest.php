@@ -28,7 +28,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|string',
             'password' => 'required|string|min:6',
             'repassword' => 'required|string|min:6|same:password',
-            'role_id' => 'gt:0',
+
         ];
     }
 
@@ -48,7 +48,7 @@ class StoreUserRequest extends FormRequest
             'name.required' => 'Họ tên không được để trống',
             'name.string' => 'Họ tên phải là dạng ký tự',
             'email.email' => 'Hãy nhập đúng định dạng Email. Ví dụ abc@gmail.com',
-            'role_id' => 'Bạn chưa chọn nhóm thành viên'
+
         ];
     }
 }

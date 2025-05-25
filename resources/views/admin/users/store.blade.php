@@ -7,10 +7,11 @@
         </div>
         <div class="m-b-30">
             @php
-                $url = ($config['method'] == 'create') ? route('admin.user.store'): route('admin.user.update', $user->id)
+                $url = ($config['method'] == 'create') ? route('admin.user.store', ['role' => $role]): route('admin.user.update', ['id' => $user->id, 'role' => $role])
             @endphp
             <form action="{{ $url }}" method="post" enctype="multipart/form-data"
-                class="form-horizontal">
+            class="form-horizontal">
+            @csrf
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -27,7 +28,6 @@
                                 <strong>Thông tin chung</strong>
                             </div>
                             <div class="card-body card-block">
-                                @csrf
                                 <div class="row form-group">
                                     <div class="col col-md-4">
                                         <label for="text-input" class=" form-control-label">Họ tên <span
@@ -51,25 +51,21 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-4">
-                                        <label for="select-members" class=" form-control-label">Nhóm thành viên <span
-                                                class="text-danger">(*)</span></label>
+                                        <label for="select-members" class=" form-control-label">Nhóm thành viên: </label>
                                     </div>
-                                    @php
-                                    $roles = [
-                                    '[Chọn nhóm thành viên]',
-                                    'Quản trị viên',
-                                    'Cộng tác viên'
-                                    ]
-                                    @endphp
                                     <div class="col-12 col-md-8">
-                                        <select name="role_id" id="select-members"
-                                            class="form-control js-select2">
-                                            @foreach ($roles as $key => $item)
-                                            <option {{ $key == old('role_id', isset($user->role_id)?$user->role_id:'')?'selected':'' }}
-                                                value="{{ $key }}">{{ $item }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="dropDownSelect2"></div>
+                                        @php
+                                            $roleValue = "";
+                                            if($role == 'guests'){
+                                                $roleValue = "Khách hàng";
+                                            }else if($role == 'staff'){
+                                                $roleValue = "Nhân viên";
+                                            }else if($role == 'collap'){
+                                                $roleValue = "Cộng tác viên";
+                                            }
+                                        @endphp
+                                        <input type="hidden" name="role" value="{{ $role }}" id="">
+                                        <input type="text" class="form-control bg-c" value="{{ $roleValue }}" id="" disabled>
                                     </div>
                                 </div>
                                 @if ($config['method'] == 'create')
@@ -203,7 +199,7 @@
                     <button type="submit" class="btn btn-primary btn-sm" name="send" value="send">
                         <i class="fa fa-save"></i> Lưu
                     </button>
-                    <a href="{{ route('admin.user') }}" class="btn btn-danger btn-sm">
+                    <a href="{{ route('admin.user.role', $role) }}" class="btn btn-danger btn-sm">
                         <i class="fa fa-ban"></i> Hủy
                     </a>
                 </div>

@@ -19,15 +19,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->count(1000)->create([
-        //     'role' => 'Admin',
-        //     'level' => '1',
-        //     'status' => 'online',
-        // ]);
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+        \App\Models\User::create([
+            'role' => '1',
+            'level' => '1',
             'password' => Hash::make('123'),
+            'email' => 'admin@example.com',
+            'name' => 'Quản trị viên'
         ]);
     }
 }

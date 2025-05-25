@@ -15,21 +15,21 @@
     // Fixed Navbar
     $(window).scroll(function () {
         if ($(window).width() < 992) {
-            if ($(this).scrollTop() > 55) {
+            if ($(this).scrollTop() > 100) {
                 $('.fixed-top').addClass('shadow');
             } else {
                 $('.fixed-top').removeClass('shadow');
             }
         } else {
-            if ($(this).scrollTop() > 55) {
-                $('.fixed-top').addClass('shadow').css('top', -55);
+            if ($(this).scrollTop() > 100) {
+                $('.fixed-top').addClass('shadow').css('top', -100);
             } else {
                 $('.fixed-top').removeClass('shadow').css('top', 0);
             }
-        } 
+        }
     });
-    
-    
+
+
    // Back to top button
    $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
@@ -112,11 +112,21 @@
     });
 
 
+
+
     // Modal Video
     $(document).ready(function () {
         var $videoSrc;
         $('.btn-play').click(function () {
             $videoSrc = $(this).data("src");
+        });
+        $(".btn-add-to-cart").click(function () {
+            $("#shoppingCart").modal("show");
+        });
+        $(".btn-login").click(function () {
+            $(".modal").not("#loginModal").modal("hide");
+            $("#loginModal").modal("show");
+
         });
         console.log($videoSrc);
 
@@ -128,6 +138,7 @@
             $("#video").attr('src', $videoSrc);
         })
     });
+
 
 
 

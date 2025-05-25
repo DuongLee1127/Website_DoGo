@@ -12,7 +12,7 @@ return[
         'title' => 'Sửa bài viết'
     ],
     'category-list' => [
-        '[Chọn danh mục cha]',
-        'root'
+        'root',
+
     ]
 ];

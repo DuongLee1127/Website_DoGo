@@ -23,17 +23,17 @@ class UserController extends Controller
     public function __construct(UserService $userService){
         $this->userService = $userService;
     }
-    public function index(Request $request)
+    public function index(Request $request, $role)
     {
 
         // $users = User::paginate(6);
 
-        $users = $this->userService->paginate($request);
+        $users = $this->userService->paginate($request, $role);
         $config = config('user');
-        $config['js'] = ['admin_assets/library/library.js'];
+        $config['js'] = ['admin_assets/library/library.js','admin_assets/library/checkbox.js'];
         $template = 'admin.users.users';
 
-        return view('admin.layouts.layout', compact('users', 'config', 'template'));
+        return view('admin.layouts.layout', compact('users', 'config', 'template', 'role'));
     }
 
     /**
@@ -41,7 +41,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($role)
     {
         $config['js'] = ['admin_assets/library/location.js',
             ];
@@ -51,7 +51,7 @@ class UserController extends Controller
         $config['seo'] = config('user');
         $config['method'] = 'create';
         $template = 'admin.users.store';
-        return view('admin.layouts.layout', compact('config', 'provinces', 'template'));
+        return view('admin.layouts.layout', compact('config', 'provinces', 'template', 'role'));
     }
 
     /**
@@ -60,7 +60,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request, $role)
     {
 
         $success = array(
@@ -75,12 +75,11 @@ class UserController extends Controller
             'alert-type' => 'error'
 
         );
-        if($this->userService->createS($request)){
-            return redirect()->route('admin.user')->with($success);
+        if($this->userService->createS($request, $role)){
+            return redirect()->route('admin.user.role', $role)->with($success);
         }
-        return redirect()->route('admin.user')->with($error);
+        return redirect()->route('admin.user.role',$role)->with($error);
     }
-
     /**
      * Display the specified resource.
      *
@@ -98,7 +97,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $role)
     {
         $user = $this->userService->findById($id);
         $config['js'] = ['admin_assets/library/location.js'
@@ -119,7 +118,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, $id, $role)
     {
         $success = array(
 
@@ -133,10 +132,10 @@ class UserController extends Controller
             'alert-type' => 'error'
 
         );
-        if($this->userService->updateS($request, $id)){
-            return redirect()->route('admin.user')->with($success);
+        if($this->userService->updateS($request, $id, $role)){
+            return redirect()->route('admin.user.role', $role)->with($success);
         }
-        return redirect()->route('admin.user')->with($error);
+        return redirect()->route('admin.user.role', $role)->with($error);
     }
 
     /**
@@ -149,7 +148,7 @@ class UserController extends Controller
     {
         //
     }
-    public function delete($id)
+    public function delete($id, $role)
     {
         //
         $success = array(
@@ -164,7 +163,7 @@ class UserController extends Controller
             'alert-type' => 'error'
 
         );
-        if($this->userService->deleteS($id)){
+        if($this->userService->deleteS($id, $role)){
             return redirect()->back()->with($success);
         }
         return redirect()->back()->with($error);

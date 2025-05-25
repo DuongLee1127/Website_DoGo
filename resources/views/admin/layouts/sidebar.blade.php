@@ -105,63 +105,39 @@
         <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
                 <li class="has-sub">
-                    <a class="js-arrow" href="{{ route('admin') }}">
-                        <i class="fas fa-tachometer-alt"></i>Bảng điều khiển</a>
+                    <a class="js-arrow d-flex" href="{{ route('admin') }}">
+                        <i class="fas fa-center fa-tachometer-alt"></i>Bảng điều khiển</a>
                 </li>
                 <li class="{{  request()->is('admin/user*') ? 'active' : ''}} has-sub">
-                    <a class="js-arrow" href="{{ route('admin.user') }}">
-                        <i class="fas fa-user"></i>Quản lý Users</a>
-                    <!-- <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
+                    <a class="js-arrow d-flex" href="#">
+                        <i class="fas fa-center fa-user"></i><span class="over-ellipsis">Quản lý nhóm thành viên</span></a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li class="{{  request()->is('admin/user/guests*') ? 'active' : ''}} has-sub">
+                                    <a href="{{ route('admin.user.role', ['role' => 'guests']) }}">Quản lý khách hàng</a>
                                 </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
+                                <li class="{{  request()->is('admin/user/staff*') ? 'active' : ''}} has-sub">
+                                    <a href="{{ route('admin.user.role', ['role' => 'staff']) }}">Quản lý nhân viên</a>
                                 </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
+                                <li class="{{  request()->is('admin/user/collap*') ? 'active' : ''}} has-sub">
+                                    <a href="{{ route('admin.user.role', ['role' => 'collap']) }}">Quản lý cộng tác viên</a>
                                 </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul> -->
+                            </ul>
                 </li>
                 <li class="{{ request()->is('admin/post*') ? 'active' : ''}} has-sub">
-                    <a class="js-arrow" href="{{ route('admin.post')}}">
-                        <i class="fas fa-copy"></i>Quản lý bài viết</a>
+                    <a class="js-arrow d-flex" href="{{ route('admin.post')}}">
+                        <i class="fas fa-center fa-copy"></i>Quản lý bài viết</a>
+                </li>
+                <li class="{{ request()->is('admin/product*') ? 'active' : ''}} has-sub">
+                    <a class="js-arrow d-flex" href="{{ route('admin.product')}}">
+                        <i class="fas fa-center fa-tags"></i>Quản lý sản phẩm</a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fas fa-chart-bar"></i>Thống kê & thanh toán</a>
-                </li>
-                <li>
-                    <a href="#">
+                    <a href="">
                         <i class="fas fa-table"></i>Quản lý đơn hàng</a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="far fa-check-square"></i>Quản lý khách hàng</a>
+                        <i class="fas fa-chart-bar"></i>Thống kê & thanh toán</a>
                 </li>
                 <li>
                     <a href="#">
@@ -172,8 +148,8 @@
                         <i class="fas fa-map-marker-alt"></i>Quản lý vận chuyển</a>
                 </li>
                 <li class="#">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-desktop"></i>Quản lý website</a>
+                    <a class="js-arrow d-flex" href="#">
+                        <i class="fas fa-center fa-desktop"></i>Quản lý website</a>
                     <!-- <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="button.html">Button</a>

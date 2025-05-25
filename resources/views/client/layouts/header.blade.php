@@ -28,4 +28,7 @@
         <!-- Customize css  -->
         <link href="{{ asset('users_assets/css/customize.css') }}" rel="stylesheet">
 
+        <!-- toastr -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
     </head>

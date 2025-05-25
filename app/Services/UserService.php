@@ -22,7 +22,7 @@ class UserService extends BaseService implements UserServiceInterface
         $this->model = $model;
     }
 
-    public function paginate($request){
+    public function paginate($request, $role){
         $column = ['*'];
         $perpage = (addslashes($request->input('records'))==''?6:addslashes($request->input('records')));
         // dd($perpage);
@@ -39,6 +39,8 @@ class UserService extends BaseService implements UserServiceInterface
                 $query->where('status', '=', $condition['publish']);
             }
         });
+        $role_id = filter_User($role);
+        $query->where('role' , '=', $role_id);
 
         return $query->paginate($perpage)->withQueryString()->withPath('user');
     }
@@ -60,10 +62,13 @@ class UserService extends BaseService implements UserServiceInterface
         return User::where('id', $id)->first();
     }
 
-    public function createS($request){
+    public function createS($request, $role){
         DB::beginTransaction($request);
         try{
             $payload = $request->except(['send', '_token']);
+            $payload['role'] = filter_User($role);
+            // dd(filter_User($payload['role']));
+            // dd($payload);
             $payload['password'] = Hash::make($payload['password']);
             $this->model->create($payload);
             // dd($payload);
@@ -78,12 +83,13 @@ class UserService extends BaseService implements UserServiceInterface
     }
 
 
-    public function updateS($request, $id){
+    public function updateS($request, $id, $role){
         DB::beginTransaction($request);
         try{
             $payload = $request->except(['send', '_token']);
+            $payload['role'] = filter_User($role);
             $user = $this->model->findOrFail($id);
-            $user->update($payload);
+            $user->update(attributes: $payload);
         // dd($user);
             // DB::table('users')->insert($payload);
             DB::commit();
@@ -95,7 +101,9 @@ class UserService extends BaseService implements UserServiceInterface
         }
     }
 
-    public function deleteS($id){
+
+
+    public function deleteS($id, $role){
         $user = $this->model->findOrFail($id);
         DB::beginTransaction();
         try{

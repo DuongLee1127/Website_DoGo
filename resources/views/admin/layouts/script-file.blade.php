@@ -13,6 +13,7 @@
 <script src="{{ asset('admin_assets/vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 <script src="{{ asset('admin_assets/vendor/chartjs/Chart.bundle.min.js') }}"></script>
 <script src="{{ asset('admin_assets/vendor/select2/select2.min.js') }}"></script>
+<!-- <script src="{{ asset('admin_assets/js/customize.js') }}"></script> -->
 
 
 <!-- Vendor JS       -->
@@ -70,5 +71,5 @@
     };
 
 </script>
-<!-- Main JS-->
+<!-- Main JS -->
 <script src="{{ asset('admin_assets/js/main.js') }}"></script>

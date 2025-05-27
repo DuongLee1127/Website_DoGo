@@ -36,11 +36,11 @@ class AuthController extends Controller
         );
         // dd($checkAcount);
         if (Auth::attempt($checkAcount)) {
-            if (Auth::user()?->role == '2') {
+            if (Auth::user()->role == '2') {
                 Auth::logout();
                 redirect()->back()->with($notEnoughRule);
             }
-            return redirect()->route('admin')->with($success);
+            return redirect()->route('admin')->with($success); 
         }
         $notification = array(
             'message' => 'Tài khoản hoặc mật khẩu không chính xác',

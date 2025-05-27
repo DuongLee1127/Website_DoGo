@@ -19,6 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -31,6 +32,11 @@ class User extends Authenticatable
         'detail_address',
         'status',
     ];
+
+    public function cartItems()
+{
+    return $this->hasMany(CartItems::class);
+}
 
     /**
      * The attributes that should be hidden for serialization.

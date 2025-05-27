@@ -64,8 +64,8 @@
                                                 $roleValue = "Cộng tác viên";
                                             }
                                         @endphp
-                                        <input type="hidden" name="role" value="{{ $role }}" id="">
-                                        <input type="text" class="form-control bg-c" value="{{ $roleValue }}" id="" disabled>
+                                        <input type="hidden" name="role" value="{{ $role }}">
+                                        <input type="text" class="form-control bg-c" value="{{ $roleValue }}" readonly>
                                     </div>
                                 </div>
                                 @if ($config['method'] == 'create')
@@ -116,7 +116,7 @@
                                     <div class="col-12 col-md-8">
                                         <select name="province_id" id="select-province"
                                             class="form-control js-select2 province" data-target="districts">
-                                            <option value="0">[Chọn thành phố]</option>
+                                            <option value="0">[Chọn Tỉnh]</option>
                                             @if(isset($provinces) && is_object($provinces))
                                             @foreach ($provinces as $province)
                                             <option @if(old('province_id')==$province->code) selected @endif value="{{ $province->code }}">{{ $province->name }}</option>
@@ -133,7 +133,7 @@
                                     <div class="col-12 col-md-8">
                                         <select name="district_id" id="select-district"
                                             class="form-control js-select2 districts" data-target="wards">
-                                            <option value="0">[Chọn Quận/Huyện]</option>
+                                            <option value="0">[Quận/Huyện]</option>
                                             @if(isset($districts) && is_object($districts))
                                             @foreach ($districts as $district)
                                             <option value="{{ $district->code }}">{{ $district->name }}</option>
@@ -150,7 +150,7 @@
                                     <div class="col-12 col-md-8">
                                         <select name="ward_id" id="select-ward"
                                             class="form-control js-select2 wards">
-                                            <option value="0">[Chọn Xã/Phường]</option>
+                                            <option value="0">[Xã/Phường]</option>
                                             @if(isset($wards) && is_object($wards))
                                             @foreach ($wards as $ward)
                                             <option value="{{ $ward->code }}">{{ $ward->name }}</option>

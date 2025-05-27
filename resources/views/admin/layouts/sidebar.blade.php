@@ -131,8 +131,8 @@
                     <a class="js-arrow d-flex" href="{{ route('admin.product')}}">
                         <i class="fas fa-center fa-tags"></i>Quản lý sản phẩm</a>
                 </li>
-                <li>
-                    <a href="">
+                <li class="{{ request()->is('admin/order*') ? 'active' : ''}} has-sub">
+                    <a href="{{ route('admin.order')}}">
                         <i class="fas fa-table"></i>Quản lý đơn hàng</a>
                 </li>
                 <li>

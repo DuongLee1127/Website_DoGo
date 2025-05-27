@@ -9,6 +9,13 @@
     <script src="https://kit.fontawesome.com/b670a00879.js" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    @if (isset($config['js']))
+    @foreach ($config['js'] as $key => $val)
+        {!! '<script src="' . asset($val) . '"></script>' !!}
+    @endforeach
+
+@endif
 <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"

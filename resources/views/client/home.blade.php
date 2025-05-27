@@ -123,17 +123,13 @@
                 <div class="tab-class text-center">
                     <div class="row g-4">
                         <div class="col-lg-4 text-start">
-                            <h2>Các sản phẩm của chúng tôi</h2>
+                            <h2>Sản phẩm tiêu biểu</h2>
                         </div>
                         <div class="col-lg-8 text-end">
                             <ul class="nav nav-pills d-inline-flex text-center mb-5">
+
                                 <li class="nav-item">
-                                    <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
-                                        <span class="text-dark" style="width: 130px;">Tất cả sản phẩm</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
+                                    <a class="d-flex py-2 m-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-2">
                                         <span class="text-dark" style="width: 130px;">Tủ, kệ</span>
                                     </a>
                                 </li>
@@ -156,127 +152,7 @@
                         </div>
                     </div>
                     <div class="tab-content">
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row g-4">
-                                <div class="col-lg-12">
-                                    <div class="row g-4">
-                                        <div class="col-md-6 col-lg-6 col-xl-4">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="{{ asset('users_assets/img/15.jpg') }}" class="img-fluid w500 rounded-top" alt="">
-                                                </div>
-                                                <div class="text-white bg-customize  px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Đồ gỗ</div>
-                                                <div class="p-4 border border-secondary border-customize  border-top-0 rounded-bottom">
-                                                    <h4>Đồ gỗ tự nhiên</h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">10.000 VNĐ</p>
-                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-6 col-xl-4">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="{{ asset('users_assets/img/4.jpg') }}" class="img-fluid w500 rounded-top" alt="">
-                                                </div>
-                                                <div class="text-white bg-customize  px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Đồ gỗ</div>
-                                                <div class="p-4 border border-secondary border-customize  border-top-0 rounded-bottom">
-                                                    <h4>Đồ gỗ tự nhiên</h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">10.000 VNĐ</p>
-                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-6 col-xl-4">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="{{ asset('users_assets/img/8.jpg') }}" class="img-fluid w500 rounded-top" alt="">
-                                                </div>
-                                                <div class="text-white bg-customize  px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Đồ gỗ</div>
-                                                <div class="p-4 border border-secondary border-customize  border-top-0 rounded-bottom">
-                                                    <h4>Đồ gỗ tự nhiên</h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">10.000 VNĐ</p>
-                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-6 col-xl-4">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="{{ asset('users_assets/img/30.jpg') }}" class="img-fluid w500 rounded-top" alt="">
-                                                </div>
-                                                <div class="text-white bg-customize  px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Đồ gỗ</div>
-                                                <div class="p-4 border border-secondary border-customize  border-top-0 rounded-bottom">
-                                                    <h4>Đồ gỗ tự nhiên</h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">10.000 VNĐ</p>
-                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-6 col-xl-4">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="{{ asset('users_assets/img/6.jpg') }}" class="img-fluid w500 rounded-top" alt="">
-                                                </div>
-                                                <div class="text-white bg-customize  px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Đồ gỗ</div>
-                                                <div class="p-4 border border-secondary border-customize  border-top-0 rounded-bottom">
-                                                    <h4>Đồ gỗ tự nhiên</h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">10.000 VNĐ</p>
-                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-6 col-xl-4">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="{{ asset('users_assets/img/20.jpg') }}" class="img-fluid w500 rounded-top" alt="">
-                                                </div>
-                                                <div class="text-white bg-customize  px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Đồ gỗ</div>
-                                                <div class="p-4 border border-secondary border-customize  border-top-0 rounded-bottom">
-                                                    <h4>Đồ gỗ tự nhiên</h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">10.000 VNĐ</p>
-                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-6 col-xl-4">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="{{ asset('users_assets/img/11.jpg') }}" class="img-fluid w500 rounded-top" alt="">
-                                                </div>
-                                                <div class="text-white bg-customize  px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Đồ gỗ</div>
-                                                <div class="p-4 border border-secondary border-customize  border-top-0 rounded-bottom">
-                                                    <h4>Đồ gỗ tự nhiên</h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">10.000 VNĐ</p>
-                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-2" class="tab-pane fade show p-0">
+                        <div id="tab-2" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
                                 <div class="col-lg-12">
                                     <div class="row g-4">
@@ -291,7 +167,7 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">10.000 VNĐ</p>
-                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
+                                                        <a href="#" class="btn border border-secondary border-customize  rounded-pill px-3 customize-text add-to-cart-items"><i class="fa fa-shopping-bag me-2 customize-text"></i> Thêm vào giỏ hàng</a>
                                                     </div>
                                                 </div>
                                             </div>

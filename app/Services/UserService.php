@@ -48,7 +48,7 @@ class UserService extends BaseService implements UserServiceInterface
     public function district($provinceId){
         $districts = District::where('province_code', $provinceId)->get();
 
-        $options = '<option value="0">[Chọn Quận/Huyện]</option>';
+        $options = '<option value="0">[Quận/Huyện]</option>';
         foreach ($districts as $district) {
             $options .= '<option value="'.$district->code.'">'.$district->name.'</option>';
         }
@@ -103,7 +103,7 @@ class UserService extends BaseService implements UserServiceInterface
 
 
 
-    public function deleteS($id, $role){
+    public function deleteS($id){
         $user = $this->model->findOrFail($id);
         DB::beginTransaction();
         try{

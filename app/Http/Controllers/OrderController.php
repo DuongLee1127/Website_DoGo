@@ -1,28 +1,39 @@
 <?php
 
-namespace App\Http\Controllers\Ajax;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUserRequest;
-use App\Models\District;
-use App\Models\Ward;
-use App\Services\UserService;
+use App\Models\Order;
+use App\Services\Interfaces\OrderServiceInterface as OrderService;
 use Illuminate\Http\Request;
 
-class LocationController extends Controller
+class OrderController extends Controller
 {
+
+
+    protected $orderService;
+    public function __construct(OrderService $orderService){
+        $this->orderService = $orderService;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $userService;
-    public function __construct(UserService $userService){
-        $this->userService = $userService;
-    }
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $post = Post::paginate(6);
+        // dd(auth()->user()->images);
+
+
+        $orders = $this->orderService->paginate($request);
+
+        $config = config('order');
+        $config['js'] = [
+            'admin_assets/library/library.js',
+            'admin_assets/library/checkbox.js'
+        ];
+        $template = 'admin.order.order';
+        return view('admin.layouts.layout', compact('orders', 'config', 'template'));
     }
 
     /**
@@ -35,40 +46,15 @@ class LocationController extends Controller
         //
     }
 
-    public function districts(Request $request){
-        $provinceId = $request->input('province_id');
-        $options = $this->userService->district($provinceId);
-
-        $response = [
-            'html' => $options
-        ];
-        return response()->json($response);
-    }
-    public function ward(Request $request){
-        $districtId = $request->input('district_id');
-        $wards = Ward::where('district_code', $districtId)->get();
-
-        $options = '<option value="0">[Xã/Phường]</option>';
-        foreach ($wards as $ward) {
-            $options .= '<option value="'.$ward->code.'">'.$ward->name.'</option>';
-        }
-
-        $response = [
-            'html' => $options
-        ];
-        return response()->json($response);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
-
-
+        //
     }
 
     /**

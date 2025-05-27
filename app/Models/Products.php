@@ -17,7 +17,8 @@ class Products extends Model
         'description',
         'product_category_id',
         'stock',
-        'status'
+        'status',
+        'order_id'
     ];
     public function images()
     {

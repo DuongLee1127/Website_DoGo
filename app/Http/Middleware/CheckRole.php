@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
@@ -14,11 +15,16 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        if (!auth()->check() || auth()->user()->role !== $role) {
-            abort(403, 'Bạn không có quyền truy cập');
+        if (!Auth::check()) {
+            return redirect('/login');
         }
+
+        if (!in_array(Auth::user()->role, $roles)) {
+            abort(403); // Hoặc redirect về trang không có quyền
+        }
+
         return $next($request);
     }
 }

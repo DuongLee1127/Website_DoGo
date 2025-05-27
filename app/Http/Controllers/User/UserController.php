@@ -97,9 +97,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $role)
+    public function edit($role, $id)
     {
-        $user = $this->userService->findById($id);
+        // $user = $this->userService->findById($id);
+        $user = User::find($id);
         $config['js'] = ['admin_assets/library/location.js'
             ];
 
@@ -108,7 +109,7 @@ class UserController extends Controller
         $config['seo'] = config('user');
         $config['method'] = 'update';
         $template = 'admin.users.store';
-        return view('admin.layouts.layout', compact('config', 'provinces', 'user', 'template'));
+        return view('admin.layouts.layout', compact('config', 'provinces', 'user', 'template', 'role'));
     }
 
     /**
@@ -118,7 +119,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, $id, $role)
+    public function update(UpdateUserRequest $request,  $role, $id)
     {
         $success = array(
 
@@ -148,7 +149,7 @@ class UserController extends Controller
     {
         //
     }
-    public function delete($id, $role)
+    public function delete($role, $id)
     {
         //
         $success = array(
@@ -163,7 +164,7 @@ class UserController extends Controller
             'alert-type' => 'error'
 
         );
-        if($this->userService->deleteS($id, $role)){
+        if($this->userService->deleteS($id)){
             return redirect()->back()->with($success);
         }
         return redirect()->back()->with($error);

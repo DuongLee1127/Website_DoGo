@@ -256,3 +256,16 @@ a {
       transform: translateY(0);
     }
 
+
+    .customize-des {
+        display: flex;
+        flex-direction: column;
+        height: 50px;
+    }
+
+    .customize-des p {
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 3.5em;
+    }

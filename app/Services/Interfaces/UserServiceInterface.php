@@ -19,5 +19,5 @@ interface UserServiceInterface
     public function updateS($request, $id, $role);
 
     public function updateStatus($request);
-    public function deleteS($id, $role);
+    public function deleteS($id);
 }

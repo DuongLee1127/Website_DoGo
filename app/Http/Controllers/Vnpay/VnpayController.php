@@ -34,7 +34,7 @@ class VnpayController extends Controller
         $vnp_TxnRef = $code_cart; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = 'Thanh toán đơn hàng test';
         $vnp_OrderType = 'billpayment';
-        $vnp_Amount = $data['total_vnpay'] * 100;
+        $vnp_Amount = $data['total_vnpay']*100;
         $vnp_Locale = 'vn';
         // $vnp_BankCode = 'NCB';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
@@ -163,6 +163,7 @@ class VnpayController extends Controller
                     'message' => 'Đăng nhập thành công',
                     'alert-type' => 'success'
                 );
+                dd($request);
                 return view('client.layouts.layout', compact('template', 'success'));
             } else {
                 $notification = array(

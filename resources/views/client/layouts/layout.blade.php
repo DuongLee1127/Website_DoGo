@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @include('client.layouts.header')
 
 <body>
@@ -106,6 +106,7 @@
             </div>
         </div>
     </div>
+    @include('client.layouts.chatbot')
     @include('client.layouts.order')
     @include('client.layouts.login')
     <!-- /shoppingCart -->

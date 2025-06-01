@@ -133,6 +133,12 @@ class HomeController extends Controller
                 return redirect()->route('client.product')->with($success);
             }
             return redirect()->route('client.product')->with($error);
+        }else if ($payload['payment_method'] == '2') {
+            session(['vnpay_data' => $payload]);
+            return redirect()->route('client.vnpay.payment');
+            // if ($this->orderService->createOrder( $request,$payload)) {
+            // }
+            // return redirect()->route('client.product')->with($error);
         }
     }
 

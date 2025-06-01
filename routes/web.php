@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\AuthController as UserAuthController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\GeminiController;
 use App\Http\Controllers\Vnpay\VnpayController;
 use App\Http\Middleware\AuthMiddle;
 use App\Http\Middleware\CheckRole;
@@ -32,17 +33,17 @@ Route::prefix('client')->group(function(){
     Route::get('/detail', [HomeController::class, 'detail'])->name('client.detail');
 
 
+
 // ajax
     Route::get('ajax/districts', [LocationController::class, 'districts']);
     Route::get('ajax/ward', [LocationController::class, 'ward']);
-    // Route::get('/ajax/districts', [LocationController::class, 'districts']);
-    // Route::get('/ajax/ward', [LocationController::class, 'ward']);
 
     Route::get('ajax/addToCart', [HomeController::class, 'addToCart']);
 
 // auth
     Route::post('/dologin', [UserAuthController::class, 'doLogin'])->name('client.dologin');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('client.login.logout');
+    Route::get('/logout', [UserAuthController::class, 'logoutu'])->name('client.logout');
+    Route::get('/login', [UserAuthController::class, 'login'])->name('client.login');
 
     //payment
     Route::prefix('vnpay')->group(function(){
@@ -50,7 +51,14 @@ Route::prefix('client')->group(function(){
     Route::get('/return', [VnpayController::class, 'vnpayReturn'])->name('client.vnpay.return');
     });
     Route::post('/payment', [HomeController::class, 'payment'])->name('client.payment');
+
+
 });
+//gemini
+    Route::post('/chat', [GeminiController::class, 'chat']);
+    Route::get('/gemini', [GeminiController::class, 'viewChat']);
+
+
 
 Route::middleware([AuthMiddle::class])->prefix('admin')->group(function(){
     //login

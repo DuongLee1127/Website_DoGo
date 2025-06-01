@@ -44,6 +44,24 @@ class AuthController extends Controller
 
     }
 
+    public function logoutu(){
+        $notification = array(
+            'message' => 'Bạn đã đăng xuất',
+            'alert-type' => 'success'
+        );
+        if(Auth::user()->role == '2'){
+            Auth::logout();
+            return redirect()->route('client')->with($notification);
+        }
+        return redirect()->route('client');
+    }
+
+    public function login(){
+
+        return view('client.layouts.login');
+
+    }
+
     public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();

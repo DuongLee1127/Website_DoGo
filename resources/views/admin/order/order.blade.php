@@ -76,7 +76,7 @@
                             <td>Mã đơn hàng</td>
                             <td>Khách hàng</td>
                             <td>Địa chỉ</td>
-                            <td>Mô tả</td>
+                            <td>Tổng tiền (VNĐ)</td>
                             <td>Tình trạng</td>
                             <td>Thanh toán</td>
                         </tr>
@@ -108,7 +108,7 @@
                                 {{ $order->customer_address }}
                             </td>
                             <td>
-                                {!! $order->notes !!}
+                                {!! number_format($order->cost_total) !!}
                             </td>
                             <td>
                                 <div class="rs-select2--trans rs-select2--sm">

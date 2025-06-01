@@ -29,6 +29,7 @@ class OrderRequest extends FormRequest
             'province_id' => 'gt:0',
             'district_id' => 'gt:0',
             'ward_id' => 'gt:0',
+            'payment_method' => 'gt:0',
         ];
     }
 
@@ -40,6 +41,7 @@ class OrderRequest extends FormRequest
             'province_id.gt' => 'Bạn chưa chọn Tỉnh/Thành phố',
             'ward_id.gt' => 'Bạn chưa chọn Xã/ Phường',
             'district_id.gt' => 'Bạn chưa chọn Quận/ Huyện',
+            'payment_method.gt' => 'Bạn chưa chọn hình thức thanh toán',
         ];
     }
 }

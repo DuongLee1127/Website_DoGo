@@ -185,7 +185,7 @@
                                                     </div>
 
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">{{ $product->price }} VNĐ</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0">{{ number_format($product->price) }} VNĐ</p>
                                                         <button data-id="{{ $product->id }}" class="btn border border-secondary border-customize customize-text-second rounded-pill px-3 text-primary add-to-cart-items"><i class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ hàng</button>
                                                     </div>
                                                 </div>

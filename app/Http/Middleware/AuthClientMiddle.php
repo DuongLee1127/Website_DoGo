@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CheckRole
+class AuthMiddle
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,11 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle(Request $request, Closure $next)
     {
-        if (!in_array(Auth::user()->role, $roles)) {
-            abort(403); // Hoặc redirect về trang không có quyền
+        if(Auth::check()){
+            return redirect()->route('client.login');
         }
-
         return $next($request);
     }
 }

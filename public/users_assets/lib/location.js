@@ -39,9 +39,7 @@
                 dataType: 'json',
                 success: function (response) {
                     $('.wards').html(response.html)
-
-                        $('.wards').trigger('change')
-
+                    $('.wards').trigger('change')
                 },
                 error: function (xhr) {
                   console.error('Lỗi:', xhr.responseText);

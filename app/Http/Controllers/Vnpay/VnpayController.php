@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Vnpay;
 
+use App\Services\Interfaces\OrderServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderRequest;
 
 class VnpayController extends Controller
 {
@@ -12,11 +14,12 @@ class VnpayController extends Controller
      *
      * @return void
      */
-    public function __construct()
+
+    protected $orderService;
+    public function __construct(OrderServiceInterface $orderService)
     {
-
+        $this->orderService = $orderService;
     }
-
     /**
      * Show the application dashboard.
      *
@@ -24,7 +27,7 @@ class VnpayController extends Controller
      */
     public function vnpay_payment(Request $request)
     {
-        $data = $request->all();
+        $data = session('vnpay_data');
         $code_cart = rand(00, 9999);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = "http://127.0.0.1:8000/client/vnpay/return";
@@ -137,7 +140,7 @@ class VnpayController extends Controller
         unset($inputData['vnp_SecureHash']);
         unset($inputData['vnp_SecureHashType']);
 
-         ksort($inputData);
+        ksort($inputData);
 
         $i = 0;
         $hashdata = "";
@@ -155,29 +158,29 @@ class VnpayController extends Controller
         $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
 
 
-        $template = 'client.home';
         // dd('secureHash'.$secureHash.'vnp_SecureHash'.$vnp_SecureHash);
         if ($secureHash === $vnp_SecureHash) {
             if ($request->vnp_ResponseCode == '00') {
                 $success = array(
-                    'message' => 'Đăng nhập thành công',
+                    'message' => 'Thanh toán thành công',
                     'alert-type' => 'success'
                 );
-                dd($request);
-                return view('client.layouts.layout', compact('template', 'success'));
+                if ($this->orderService->createOrder( $request, session('vnpay_data'))) {
+                    return redirect()->route('client')->with($success);
+                }
             } else {
                 $notification = array(
-                    'message' => 'Tài khoản hoặc mật khẩu không chính xác',
+                    'message' => 'Thanh toán thất bại',
                     'alert-type' => 'warning'
                 );
-                return view('client.layouts.layout', compact('template', 'notification'));
+                return redirect()->route('client')->with($notification);
             }
         } else {
             $notification = array(
-                'message' => 'Tài khoản hoặc mật khẩu không chính xác',
+                'message' => 'Thanh toán thất bại',
                 'alert-type' => 'warning'
             );
-           return view('client.layouts.layout', compact('template', 'notification'));
+                return redirect()->route('client')->with($notification);
         }
     }
 

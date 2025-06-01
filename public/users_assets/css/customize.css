@@ -142,6 +142,12 @@ a {
     margin-bottom: 10px;
     color: #5D4037;
 }
+
+@media (max-width: 576px) {
+    .modal-content {
+        width: 100vw;
+    }
+}
 .title-cart {
     display: block;
     width: 95%;
@@ -269,3 +275,135 @@ a {
         text-overflow: ellipsis;
         max-height: 3.5em;
     }
+
+.dropdown-menu {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    min-width: 200px;
+    background-color: #ffffff;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 5px 10px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+    color: #4d391a;
+}
+
+.dropdown-toggle::after {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle.show::after {
+    transform: rotate(180deg);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .dropdown-menu {
+        min-width: 100%;
+    }
+}
+
+
+.my-auto::after {
+    margin: 0 !important;
+    font-size: .685rem;
+}
+
+/* Icon Chat */
+.chat-icon {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    transition: background-color 0.3s;
+    z-index: 1000;
+}
+
+/* Khung Chat */
+.chat-box {
+    position: fixed;
+    bottom: 230px;
+    right: 20px;
+    width: 390px;
+    max-height: 450px;
+    display: none;
+    z-index: 999;
+}
+
+.chat-header {
+    background: linear-gradient(45deg, #E17564, #D2665A);
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.chat-body {
+    height: 400px;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.chat-footer {
+    padding: 14px;
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-footer input {
+    border-radius: 20px;
+}
+
+.chat-footer button {
+    border-radius: 20px;
+}
+
+/* Tin nhắn */
+.message {
+    margin-bottom: 10px;
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.message.customer {
+    background: linear-gradient(45deg, #A67B5B, #ECB176);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+}
+
+.message.staff {
+    background: linear-gradient(45deg, #F6DED8, #F2B28C);
+    color: black;
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+}

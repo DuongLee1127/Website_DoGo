@@ -111,14 +111,12 @@
                                 {!! number_format($order->cost_total) !!}
                             </td>
                             <td>
-                                <div class="rs-select2--trans rs-select2--sm">
                                     <select class="js-select2" name="property">
                                         @foreach ($status as $key => $value)
                                             <option {{ ((string)$publish == (string)$key) ? 'selected': '' }} value="{{ $key }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
                                     <div class="dropDownSelect2"></div>
-                                </div>
                             </td>
                             <td>
                                 @if ( $order->payment_method == '1')

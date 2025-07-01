@@ -16,6 +16,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Client\ClientAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ use App\Http\Controllers\OrderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+    Route::get('ajax/districts', [LocationController::class, 'districts']);
+    Route::get('ajax/ward', [LocationController::class, 'ward']);
+    Route::get('ajax/addToCart', [HomeController::class, 'addToCart']);
+
 Route::prefix('client')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('client');
     Route::get('/shop', [HomeController::class, 'product'])->name('client.product');
@@ -37,14 +42,13 @@ Route::prefix('client')->group(function(){
 // ajax
     Route::get('ajax/districts', [LocationController::class, 'districts']);
     Route::get('ajax/ward', [LocationController::class, 'ward']);
-
     Route::get('ajax/addToCart', [HomeController::class, 'addToCart']);
 
 // auth
     Route::post('/dologin', [UserAuthController::class, 'doLogin'])->name('client.dologin');
     Route::get('/logout', [UserAuthController::class, 'logoutu'])->name('client.logout');
     Route::get('/login', [UserAuthController::class, 'login'])->name('client.login');
-
+    Route::post('/register', [UserAuthController::class, 'register'])->name('client.register');
     //payment
     Route::prefix('vnpay')->group(function(){
     Route::get('/payment', [VnpayController::class, 'vnpay_payment'])->name('client.vnpay.payment');
@@ -123,3 +127,4 @@ Route::get('filemanager', function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

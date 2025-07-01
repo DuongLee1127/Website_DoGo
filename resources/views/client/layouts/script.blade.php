@@ -22,7 +22,7 @@
         const chatBody = document.getElementById('chatBody');
         const messageText = messageInput.value.trim();
 
-        if (messageText !== '') {
+        if (messageText !=='') {
             // Thêm tin nhắn của khách hàng
             const customerMessage = document.createElement('div');
             customerMessage.className = 'message customer';

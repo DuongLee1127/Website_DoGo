@@ -27,7 +27,6 @@ class StorePostRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'required|string',
             'content' => 'required|string',
-            'category' => 'gt:0',
         ];
     }
 
@@ -37,7 +36,6 @@ class StorePostRequest extends FormRequest
             'title.string' => 'Tiêu đề bạn nhập phải là dạng chuỗi',
             'description.required' => 'Bạn chưa nhập mô tả ngắn',
             'content.required' => 'Bạn chưa nội dung',
-            'category.gt' => 'Bạn chưa chọn danh mục cha',
         ];
     }
 }

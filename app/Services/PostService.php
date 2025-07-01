@@ -62,9 +62,10 @@ class PostService extends BaseService implements PostServiceInterface
 
     public function createS($request){
         DB::beginTransaction($request);
+
         try{
             $payload = $request->except(['send', '_token']);
-            $payload['password'] = Hash::make($payload['password']);
+            dd($payload);
             $this->model->create($payload);
             // dd($payload);
             // DB::table('users')->insert($payload);

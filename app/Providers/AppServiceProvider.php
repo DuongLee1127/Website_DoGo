@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\Interfaces\ProductServiceInterface::class => \App\Services\ProductService::class,
             \App\Services\Interfaces\OrderServiceInterface::class => \App\Services\OrderService::class,
             \App\Services\Interfaces\GeminiServiceInterface::class => \App\Services\GeminiService::class,
+            \App\Services\Interfaces\ProductClientServiceInterface::class => \App\Services\ProductClientService::class,
         ];
         foreach ($bindings as $interface => $implementation) {
             $this->app->bind($interface, $implementation);

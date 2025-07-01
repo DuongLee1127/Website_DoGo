@@ -9,7 +9,7 @@ use App\Models\District;
 use App\Models\Order;
 use App\Models\Province;
 use App\Models\Ward;
-use App\Services\Interfaces\ProductServiceInterface as ProductService;
+use App\Services\Interfaces\ProductClientServiceInterface as ProductClientService;
 use App\Services\Interfaces\OrderServiceInterface as OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     protected $productService;
     protected $orderService;
-    public function __construct(ProductService $productService, OrderService $orderService)
+    public function __construct(ProductClientService $productService, OrderService $orderService)
     {
         $this->productService = $productService;
         $this->orderService = $orderService;

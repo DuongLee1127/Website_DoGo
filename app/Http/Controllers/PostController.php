@@ -70,10 +70,11 @@ class PostController extends Controller
             'alert-type' => 'error'
 
         );
+
         if($this->postService->createS($request)){
-            return redirect()->route('admin.user')->with($success);
+            return redirect()->route('admin.post')->with($success);
         }
-        return redirect()->route('admin.user')->with($error);
+        return redirect()->route('admin.post')->with($error);
     }
 
     /**

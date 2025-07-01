@@ -128,7 +128,11 @@
             $("#loginModal").modal("show");
 
         });
-        console.log($videoSrc);
+        $(".btn-register").click(function () {
+            $(".modal").not("#registerModal").modal("hide");
+            $("#registerModal").modal("show");
+
+        });
 
         $('#videoModal').on('shown.bs.modal', function (e) {
             $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");

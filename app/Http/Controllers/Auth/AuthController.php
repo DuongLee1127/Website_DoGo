@@ -40,7 +40,7 @@ class AuthController extends Controller
                 Auth::logout();
                 redirect()->back()->with($notEnoughRule);
             }
-            return redirect()->route('admin')->with($success); 
+            return redirect()->route('admin')->with($success);
         }
         $notification = array(
             'message' => 'Tài khoản hoặc mật khẩu không chính xác',

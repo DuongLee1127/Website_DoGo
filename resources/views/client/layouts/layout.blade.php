@@ -109,6 +109,7 @@
     @include('client.layouts.chatbot')
     @include('client.layouts.order')
     @include('client.layouts.login')
+    @include('client.layouts.register')
     <!-- /shoppingCart -->
     @include('client.layouts.script')
 </body>

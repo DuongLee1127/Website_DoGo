@@ -20,11 +20,10 @@
 
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
-            <h1 class="text-center customize-text display-6 customize-shadow">Shop</h1>
+            <h1 class="text-center text-white display-6 customize-shadow">Shop</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item customize-text customize-shadow"><a href="#">Home</a></li>
-                <li class="breadcrumb-item customize-text customize-shadow"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Shop</li>
+                <li class="breadcrumb-item customize-shadow"><a class="text-white" href="{{ route('client') }}">Home</a></li>
+                <li class="breadcrumb-item active customize-text">Shop</li>
             </ol>
         </div>
         <!-- Single Page Header End -->
@@ -162,9 +161,6 @@
                                     <div class="col-lg-12">
                                         <div class="position-relative">
                                             <img src="{{ asset('users_assets/img/31.jpg') }}" class="img-fluid w500 rounded" alt="">
-                                            <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
-                                                <h3 class="text-secondary fw-bold">Fresh <br> Fruits <br> Banner</h3>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -192,19 +188,10 @@
                                             </div>
                                         </div>
                                     @endforeach
-
-                                    <div class="col-12">
-                                        <div class="pagination d-flex justify-content-center mt-5">
-                                            <a href="#" class="rounded">&laquo;</a>
-                                            <a href="#" class="active rounded">1</a>
-                                            <a href="#" class="rounded">2</a>
-                                            <a href="#" class="rounded">3</a>
-                                            <a href="#" class="rounded">4</a>
-                                            <a href="#" class="rounded">5</a>
-                                            <a href="#" class="rounded">6</a>
-                                            <a href="#" class="rounded">&raquo;</a>
+                                        <div class="user-data__footer">
+                                            {{ $products->links('pagination::bootstrap-4') }}
+                                            <!-- <button class="au-btn au-btn-load">load more</button> -->
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
